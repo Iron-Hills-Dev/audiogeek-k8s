@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-env
+  namespace: audiogeek
+data:
+  POSTGRES_USER: audiogeek
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgadmin-env
+  namespace: audiogeek
+data:
+  PGADMIN_DEFAULT_EMAIL: codebusters@ironhills.dev
