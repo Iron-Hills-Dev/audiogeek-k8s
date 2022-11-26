@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gazer-env
+  namespace: audiogeek
+data:
+  GAZER_DATABASE_DATASOURCE_URL: jdbc:postgresql://postgres-svc:5432/gazer
+  GAZER_DATABASE_USER: audiogeek
+  GAZER_LOG_LEVEL: info
+  GAZER_PORT: '8091'
+  GAZER_SPOTIFY_CLIENT_ID: 73a37d19a3cc42e19ff8e3426a5afdbf
+  GAZER_FLOW_ON_STARTUP: 'true'
+  GAZER_FLOW_SCHEDULER_CRON: 0 0 3 * * *

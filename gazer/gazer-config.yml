@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gazer-svc
+  namespace: audiogeek
+spec:
+  selector:
+    app: gazer
+  ports:
+    - port: 8091
+      targetPort: 8091
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gazer
+  namespace: audiogeek
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gazer
+  template:
+    metadata:
+      labels:
+        app: gazer
+    spec:
+      containers:
+        - name: gazer
+          image: codebusters0/audiogeek-gazer:0.1.0
+          resources:
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 8091
+          envFrom:
+            - secretRef:
+                name: gazer-secret
+            - configMapRef:
+                name: gazer-env
