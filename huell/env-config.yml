@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: huell-env
+  namespace: audiogeek
+data:
+  HUELL_LOGLEVEL: INFO
+  HUELL_JWT_EXP_TIME: 3600
