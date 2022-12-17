@@ -13,3 +13,4 @@ metadata:
   namespace: audiogeek
 data:
   PGADMIN_DEFAULT_EMAIL: codebusters@ironhills.dev
+  PGADMIN_CONFIG_MAX_LOGIN_ATTEMPTS: '0'
