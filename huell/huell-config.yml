@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: huell-svc
+  namespace: audiogeek
+spec:
+  type: NodePort
+  selector:
+    app: huell
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 31001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: huell
+  namespace: audiogeek
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: huell
+  template:
+    metadata:
+      labels:
+        app: huell
+    spec:
+      containers:
+        - name: huell
+          image: codebusters0/huell:1.0.0
+          resources:
+            limits:
+              memory: "512Mi"
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: huell-secret
+            - configMapRef:
+                name: huell-env
